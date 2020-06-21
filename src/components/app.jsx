@@ -12,8 +12,8 @@ export default function App() {
       <Header />
       <BrowserRouter>
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/lot-of-react-buttons' component={LotOfReactButtons} />
+          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home} />
+          <Route path={`${process.env.PUBLIC_URL}/lot-of-react-buttons`} component={LotOfReactButtons} />
           <Route component={Page404} />
         </Switch>
       </BrowserRouter>
