@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className='container'>
       <section className='row p-5'>
-        <a className='text-decoration-none text-dark' href='/'>
+        <a className='text-decoration-none text-dark' href='/react-examples/'>
           <h1>React Examples</h1>
         </a>
       </section>
