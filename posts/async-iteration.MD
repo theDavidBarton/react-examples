@@ -153,7 +153,7 @@ Works just like in case of 132 buttons (but takes more time).
 
 # Summary
 
-- Avoid using `Array.map` if you only want to perform async events in iteration that don't return anything.
+- Avoid using `Array.map` if you only want to perform async events and you aren't using the returned array, use forEach or for-of instead.
 - `Array.forEach` is an option, but you need to wrap it so the next async method only starts after all promises are resolved.
-- Combine `Array.forEach` with `$$eval` for best performance if the order of async events doesn't maeetr inside the iteration.
+- Combine `Array.forEach` with `$$eval` for best performance if the order of async events doesn't matter inside the iteration.
 - Use `for`/`for...of` if speed is not a must and if the order of the async events does matter inside the iteration.
