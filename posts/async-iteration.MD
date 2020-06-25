@@ -2,7 +2,7 @@
 
 As all puppeteer methods are asynchronous it doesn't matter how we iterate over them. I've made a comparison and a rating of the most commonly recommended and most commonly used options.
 
-I have created a React.Js example page with a lot of React buttons [here](https://thedavidbarton.github.io/react-examples/#/lot-of-react-buttons) (I just call it _Lot Of React Buttons_). Here (1) we are able set how many buttons to be rendered on the page; (2) we can activate the black buttons to green by clicking on them. I consider it an identical usecase as the OP's, and it is also a general case of browser automation (we expect something to happen if we've done something). 
+For this purpose I have created a React.Js example page with a lot of React buttons [here](https://thedavidbarton.github.io/react-examples/#/lot-of-react-buttons) (I just call it _Lot Of React Buttons_). Here **(1)** we are able set how many buttons to be rendered on the page; **(2)** we can activate the black buttons to green by clicking on them. I consider it an identical usecase as the OP's, and it is also a general case of browser automation (we expect something to happen if we've done something on the page). 
 Let's say our use case is:
 
 ```gherkin
@@ -19,9 +19,9 @@ Scenario outline: click all the buttons with the same selector
 
 There is a conservative and a rather extreme scenario. To click **132** buttons is not a huge CPU task, **1320** can take a bit of time.
 
-## Array.map ❌
+## ❌ Array.map
 
-In general if we only want to perform async methods like [`elementHandle.click`](https://pptr.dev/#?product=Puppeteer&version=v4.0.1&show=api-elementhandleclickoptions) in iteration, but we don't want to return a new array it is bad practice to use `Array.map`.
+In general if we only want to perform async methods like [`elementHandle.click`](https://pptr.dev/#?product=Puppeteer&version=v4.0.1&show=api-elementhandleclickoptions) in iteration, but we don't want to return a new array it is bad practice to use `Array.map`. Other than that you will see from the test results it behaves differently tan we'd expect it to do as it generates all the requests all the same time and does not await each async functions.
 
 ### Code example
 
@@ -44,7 +44,7 @@ In general if we only want to perform async methods like [`elementHandle.click`]
 
 ### 132 button scenario result:
 
-By watching the browser in headful mode it looks like it works, but if we check when the `page.screenshot` happened: we can see the clicks were still in progress.
+By watching the browser in headful mode it looks like it works, but if we check when the `page.screenshot` happened: we can see the clicks were still in progress. It is due to the fact the `Array.map` cannot be awaited by default. It is only luck that the script had enought time to resolve all clicks on all elements until the browser was not closed.
 
 <img src="./img/clicks_map_02.gif" alt="running map" width="450"/><img src="./img/clicks_map_02.png" alt="result map" width="450"/>
 
@@ -55,7 +55,7 @@ If we increase the number of elements with the same selector we will run into th
 
 ---
 
-## Array.forEach ❌
+## ❌ Array.forEach
 
 Almost the same case as with `Array.map` method, except: for `Array.forEach` does not return a new array.
 
@@ -89,9 +89,9 @@ If we increase the number of elements with the same selector we will run into th
 `UnhandledPromiseRejectionWarning: Error: Node is either not visible or not an HTMLElement`, because we already reached `await page.screenshot()` and `await browser.close()`: the loop is still running but the page is already closed.
 
 ---
-## page.$$eval + forEach ✅
+## ✔ page.$$eval + forEach
 
-The best performing solution is a slightly modified version of _bside_'s (answer)[https://stackoverflow.com/a/54712599/12412595].
+The best performing solution is a slightly modified version of _bside_'s [answer](https://stackoverflow.com/a/54712599/12412595).
 
 ### Code example
 
@@ -118,8 +118,9 @@ By watching the browser in headful mode we see the effect is immediate, also the
 Works just like in case of 132 buttons.
 
 ---
-## for...of ✅
+## ✔ for...of loop
 
+The simpliest option, not that fast, but executes clicks in sequence. The script won't go to `page.screenshot` until the loop is not finished.
 
 ### Code example
 
