@@ -97,7 +97,7 @@ If we increase the number of elements with the same selector we will run into th
 
 ## III. page.$$eval + forEach
 
-The best performing solution is a slightly modified version of _bside_'s [answer](https://stackoverflow.com/a/54712599/12412595). [`page.$$eval(selector, pageFunction[, ...args])`](https://pptr.dev/#?product=Puppeteer&version=v4.0.1&show=api-pageevalselector-pagefunction-args) runs `Array.from(document.querySelectorAll(selector))` within the page and passes it as the first argument to `pageFunction`. It functions as a wrapper over forEach hence it can be awaited perfectly.
+The best performing solution is a slightly modified version of _bside_'s [answer](https://stackoverflow.com/a/54712599/12412595). The **page.$$eval** ([`page.$$eval(selector, pageFunction[, ...args])`](https://pptr.dev/#?product=Puppeteer&version=v4.0.1&show=api-pageevalselector-pagefunction-args)) runs `Array.from(document.querySelectorAll(selector))` within the page and passes it as the first argument to `pageFunction`. It functions as a wrapper over forEach hence it can be awaited perfectly.
 
 ### Code example
 
