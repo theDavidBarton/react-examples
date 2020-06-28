@@ -17,6 +17,9 @@ export default function Home() {
                   <Link to='/search-dropdown'>Search Dropdown With Autocomplete</Link>
                 </li>
                 <li>
+                  <Link to='/api-call'>Api Call</Link>
+                </li>
+                <li>
                   <Link to='/404'>Error Page</Link>
                 </li>
               </ul>

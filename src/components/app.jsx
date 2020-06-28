@@ -6,6 +6,7 @@ import Page404 from './page404'
 import Header from './header'
 import Footer from './footer'
 import SearchDropdown from './searchDropdown'
+import ApiCall from './apiCall'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route exact path='/' component={Home} />
           <Route path='/lot-of-react-buttons' component={LotOfReactButtons} />
           <Route path='/search-dropdown' component={SearchDropdown} />
+          <Route path='/api-call' component={ApiCall} />
           <Route component={Page404} />
         </Switch>
       </HashRouter>
