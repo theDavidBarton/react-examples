@@ -72,3 +72,17 @@ p > * {
   bottom: 0;
   z-index: -1;
 }
+
+/* api call */
+
+.item-heading {
+  font-size: 1rem;
+  height: 3rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.img-height {
+  min-height: 180px;
+  min-width: 320px;
+}
