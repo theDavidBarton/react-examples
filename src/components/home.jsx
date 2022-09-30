@@ -20,6 +20,9 @@ export default function Home() {
                   <Link to='/api-call'>Api Call</Link>
                 </li>
                 <li>
+                  <Link to='/youtube-iframe'>Youtube Iframe</Link>
+                </li>
+                <li>
                   <Link to='/404'>Error Page</Link>
                 </li>
               </ul>
