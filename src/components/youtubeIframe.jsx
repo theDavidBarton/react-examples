@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function YoutubeIframe() {
-  const [youtubeID,] = useState('dg0Y6gSH-So')
+  const [youtubeID] = useState('dg0Y6gSH-So')
 
   return (
     <main className='bg-light height-keep'>
