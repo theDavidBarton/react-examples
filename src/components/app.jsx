@@ -6,7 +6,6 @@ import Page404 from './page404'
 import Header from './header'
 import Footer from './footer'
 import SearchDropdown from './searchDropdown'
-import ApiCall from './apiCall'
 import YoutubeIframe from './youtubeIframe'
 
 export default function App() {
@@ -18,7 +17,6 @@ export default function App() {
           <Route exact path='/' component={Home} />
           <Route path='/lot-of-react-buttons' component={LotOfReactButtons} />
           <Route path='/search-dropdown' component={SearchDropdown} />
-          <Route path='/api-call' component={ApiCall} />
           <Route path='/youtube-iframe' component={YoutubeIframe} />
           <Route component={Page404} />
         </Switch>
